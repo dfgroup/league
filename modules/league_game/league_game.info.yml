@@ -1,0 +1,7 @@
+name: League Game
+type: module
+description: League games for tournamente management
+core: 8.x
+package: League
+dependencies:
+  - league

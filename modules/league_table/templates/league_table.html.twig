@@ -1,0 +1,22 @@
+{#
+/**
+ * @file league_table.html.twig
+ * Default theme implementation to present League table data.
+ *
+ * This template is used when viewing League table pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_league_table()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('league_table') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

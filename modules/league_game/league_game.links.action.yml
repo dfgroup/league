@@ -1,0 +1,5 @@
+entity.league_game.add_form:
+  route_name: entity.league_game.add_form
+  title: 'Add League game'
+  appears_on:
+    - entity.league_game.collection

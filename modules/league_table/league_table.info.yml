@@ -1,0 +1,8 @@
+name: League Table
+type: module
+description: League table information
+core: 8.x
+package: league
+dependencies:
+  - league
+  - league_game

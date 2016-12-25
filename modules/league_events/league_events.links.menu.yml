@@ -1,0 +1,14 @@
+
+# League events menu items definition
+entity.league_events.collection:
+  title: 'League events list'
+  route_name: entity.league_events.collection
+  description: 'List League events entities'
+  parent: system.admin_structure
+  weight: 100
+
+league_events.admin.structure.settings:
+  title: League events settings
+  description: 'Configure League events entities'
+  route_name: league_events.settings
+  parent: system.admin_structure

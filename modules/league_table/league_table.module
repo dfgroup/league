@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains league_table.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function league_table_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the league_table module.
+    case 'help.page.league_table':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('League table information') . '</p>';
+      return $output;
+
+    default:
+  }
+}

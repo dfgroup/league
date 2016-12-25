@@ -1,0 +1,22 @@
+add league table entities:
+  title: 'Create new League table entities'
+
+administer league table entities:
+  title: 'Administer League table entities'
+  description: 'Allow to access the administration form to configure League table entities.'
+  restrict access: true
+
+delete league table entities:
+  title: 'Delete League table entities'
+
+edit league table entities:
+  title: 'Edit League table entities'
+
+access league table overview:
+  title: 'Access the League table overview page'
+
+view published league table entities:
+  title: 'View published League table entities'
+
+view unpublished league table entities:
+  title: 'View unpublished League table entities'

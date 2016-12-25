@@ -1,0 +1,27 @@
+# League lineup routing definition
+league_lineup.settings_tab:
+  route_name: league_lineup.settings
+  title: 'Settings'
+  base_route: league_lineup.settings
+
+entity.league_lineup.canonical:
+  route_name: entity.league_lineup.canonical
+  base_route: entity.league_lineup.canonical
+  title: 'View'
+
+entity.league_lineup.edit_form:
+  route_name: entity.league_lineup.edit_form
+  base_route: entity.league_lineup.canonical
+  title: 'Edit'
+
+entity.league_lineup.version_history:
+  route_name: entity.league_lineup.version_history
+  base_route: entity.league_lineup.canonical
+  title: 'Revisions'
+
+entity.league_lineup.delete_form:
+  route_name:  entity.league_lineup.delete_form
+  base_route:  entity.league_lineup.canonical
+  title: Delete
+  weight: 10
+

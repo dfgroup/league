@@ -1,0 +1,14 @@
+
+# League table menu items definition
+entity.league_table.collection:
+  title: 'League table list'
+  route_name: entity.league_table.collection
+  description: 'List League table entities'
+  parent: system.admin_structure
+  weight: 100
+
+league_table.admin.structure.settings:
+  title: League table settings
+  description: 'Configure League table entities'
+  route_name: league_table.settings
+  parent: system.admin_structure

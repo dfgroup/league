@@ -1,0 +1,14 @@
+
+# League game menu items definition
+entity.league_game.collection:
+  title: 'League game list'
+  route_name: entity.league_game.collection
+  description: 'List League game entities'
+  parent: system.admin_structure
+  weight: 100
+
+league_game.admin.structure.settings:
+  title: League game settings
+  description: 'Configure League game entities'
+  route_name: league_game.settings
+  parent: system.admin_structure

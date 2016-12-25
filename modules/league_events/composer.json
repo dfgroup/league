@@ -1,0 +1,14 @@
+{
+  "name": "drupal/league_events",
+  "type": "drupal-module",
+  "description": "Generates information for player events during games. Ex: Red or Yellow Cards",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/league_events",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/league_events",
+    "source": "http://cgit.drupalcode.org/league_events"
+  },
+  "require": { }
+}

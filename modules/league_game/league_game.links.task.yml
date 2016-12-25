@@ -1,0 +1,27 @@
+# League game routing definition
+league_game.settings_tab:
+  route_name: league_game.settings
+  title: 'Settings'
+  base_route: league_game.settings
+
+entity.league_game.canonical:
+  route_name: entity.league_game.canonical
+  base_route: entity.league_game.canonical
+  title: 'View'
+
+entity.league_game.edit_form:
+  route_name: entity.league_game.edit_form
+  base_route: entity.league_game.canonical
+  title: 'Edit'
+
+entity.league_game.version_history:
+  route_name: entity.league_game.version_history
+  base_route: entity.league_game.canonical
+  title: 'Revisions'
+
+entity.league_game.delete_form:
+  route_name:  entity.league_game.delete_form
+  base_route:  entity.league_game.canonical
+  title: Delete
+  weight: 10
+

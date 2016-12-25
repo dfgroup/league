@@ -1,0 +1,33 @@
+add league lineup entities:
+  title: 'Create new League lineup entities'
+
+administer league lineup entities:
+  title: 'Administer League lineup entities'
+  description: 'Allow to access the administration form to configure League lineup entities.'
+  restrict access: true
+
+delete league lineup entities:
+  title: 'Delete League lineup entities'
+
+edit league lineup entities:
+  title: 'Edit League lineup entities'
+
+access league lineup overview:
+  title: 'Access the League lineup overview page'
+
+view published league lineup entities:
+  title: 'View published League lineup entities'
+
+view unpublished league lineup entities:
+  title: 'View unpublished League lineup entities'
+
+view all league lineup revisions:
+  title: 'View all League lineup revisions'
+
+revert all league lineup revisions:
+  title: 'Revert all League lineup revisions'
+  description: 'Role requires permission <em>view League lineup revisions</em> and <em>edit rights</em> for league lineup entities in question or <em>administer league lineup entities</em>.'
+
+delete all league lineup revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view League lineup revisions</em> and <em>delete rights</em> for league lineup entities in question or <em>administer league lineup entities</em>.'

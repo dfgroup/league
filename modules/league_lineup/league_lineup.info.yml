@@ -1,0 +1,7 @@
+name: League Lineup
+type: module
+description: Generates lineup information for games
+core: 8.x
+package: League
+dependencies:
+  - league_game
