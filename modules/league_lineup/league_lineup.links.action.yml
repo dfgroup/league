@@ -1,5 +1,0 @@
-entity.league_lineup.add_form:
-  route_name: entity.league_lineup.add_form
-  title: 'Add League lineup'
-  appears_on:
-    - entity.league_lineup.collection

@@ -1,8 +1,7 @@
-name: League Events
+name: league_events
 type: module
-description: Generates information for player events during games. Ex: Red or Yellow Cards
+description: Events for games on League tournament
 core: 8.x
 package: League
 dependencies:
-  - league_player
   - league_game

@@ -16,7 +16,7 @@ function league_game_help($route_name, RouteMatchInterface $route_match) {
     case 'help.page.league_game':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('League games for tournamente management') . '</p>';
+      $output .= '<p>' . t('Game functions for League Module') . '</p>';
       return $output;
 
     default:

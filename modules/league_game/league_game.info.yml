@@ -1,6 +1,6 @@
 name: League Game
 type: module
-description: League games for tournamente management
+description: Game functions for League Module
 core: 8.x
 package: League
 dependencies:

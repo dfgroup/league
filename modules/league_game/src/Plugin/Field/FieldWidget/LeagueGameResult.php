@@ -24,8 +24,6 @@ class LeagueGameResult extends WidgetBase {
    */
   public static function defaultSettings() {
     return [
-      'size' => 60,
-      'placeholder' => '',
     ] + parent::defaultSettings();
   }
 
@@ -34,20 +32,6 @@ class LeagueGameResult extends WidgetBase {
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
     $elements = [];
-
-    $elements['size'] = [
-      '#type' => 'number',
-      '#title' => t('Size of textfield'),
-      '#default_value' => $this->getSetting('size'),
-      '#required' => TRUE,
-      '#min' => 1,
-    ];
-    $elements['placeholder'] = [
-      '#type' => 'textfield',
-      '#title' => t('Placeholder'),
-      '#default_value' => $this->getSetting('placeholder'),
-      '#description' => t('Text that will be shown inside the field until a value is entered. This hint is usually a sample value or a brief description of the expected format.'),
-    ];
 
     return $elements;
   }
@@ -58,11 +42,6 @@ class LeagueGameResult extends WidgetBase {
   public function settingsSummary() {
     $summary = [];
 
-    $summary[] = t('Textfield size: @size', ['@size' => $this->getSetting('size')]);
-    if (!empty($this->getSetting('placeholder'))) {
-      $summary[] = t('Placeholder: @placeholder', ['@placeholder' => $this->getSetting('placeholder')]);
-    }
-
     return $summary;
   }
 
@@ -70,12 +49,23 @@ class LeagueGameResult extends WidgetBase {
    * {@inheritdoc}
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
-    $element['value'] = $element + [
-      '#type' => 'textfield',
-      '#default_value' => isset($items[$delta]->value) ? $items[$delta]->value : NULL,
-      '#size' => $this->getSetting('size'),
-      '#placeholder' => $this->getSetting('placeholder'),
-      '#maxlength' => $this->getFieldSetting('max_length'),
+    $element['score_a'] = [
+      '#type' => 'number',
+      '#title' => $this->t('A'),
+      '#default_value' => isset($items[$delta]->score_a) ? $items[$delta]->score_a : 0,
+      '#size' => 4,
+    ];
+    $element['score_b'] = [
+      '#type' => 'number',
+      '#title' => $this->t('B'),
+	  '#default_value' => isset($items[$delta]->score_b) ? $items[$delta]->score_b : 0,
+      '#size' => 4,
+    ];
+    $element += [
+      '#type' => 'fieldset',
+      '#attributes' => array(
+        'class' => 'container-inline',
+      ),
     ];
 
     return $element;

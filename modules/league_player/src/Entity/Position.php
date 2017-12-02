@@ -26,7 +26,8 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *   entity_keys = {
  *     "id" = "id",
  *     "label" = "label",
- *     "uuid" = "uuid"
+ *     "uuid" = "uuid",
+ *     "weight" = "weight"
  *   },
  *   links = {
  *     "canonical" = "/admin/structure/position/{position}",
@@ -53,4 +54,26 @@ class Position extends ConfigEntityBase implements PositionInterface {
    */
   protected $label;
 
+  /**
+   * Weight for ordering purposes.
+   *
+   * @var int
+   */
+  protected $weight;
+
+  /**
+   * {@inheritdoc}
+   */
+  public function weight() {
+    return $this->weight;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setWeight($weight) {
+    $this->set('weight', $weight);
+    return $this;
+  }
+  
 }

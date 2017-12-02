@@ -9,5 +9,23 @@ use Drupal\Core\Config\Entity\ConfigEntityInterface;
  */
 interface PositionInterface extends ConfigEntityInterface {
 
-  // Add get/set methods for your configuration properties here.
-}
+  /**
+   * Gets the Position Weight.
+   *
+   * @return int
+   *   Weight of the position.
+   */
+  public function weight();
+
+  /**
+   * Sets the Position weight.
+   *
+   * @param int $weight
+   *   The Position weight.
+   *
+   * @return \Drupal\league_player\Entity\PositionInterface
+   *   The called Position weight.
+   */
+  public function setWeight($weight);
+
+  }

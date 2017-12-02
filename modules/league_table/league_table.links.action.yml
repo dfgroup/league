@@ -1,5 +1,0 @@
-entity.league_table.add_form:
-  route_name: entity.league_table.add_form
-  title: 'Add League table'
-  appears_on:
-    - entity.league_table.collection

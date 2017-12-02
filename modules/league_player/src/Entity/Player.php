@@ -33,7 +33,7 @@ use Drupal\user\UserInterface;
  *       "html" = "Drupal\league_player\PlayerHtmlRouteProvider",
  *     },
  *   },
- *   base_table = "player",
+ *   base_table = "league_player",
  *   admin_permission = "administer player entities",
  *   entity_keys = {
  *     "id" = "id",
@@ -194,7 +194,7 @@ class Player extends ContentEntityBase implements PlayerInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-      $fields['first_name'] = BaseFieldDefinition::create('string')
+    $fields['first_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('First name'))
       ->setDescription(t('The first name of the Player.'))
       ->setSettings(array(
@@ -214,7 +214,7 @@ class Player extends ContentEntityBase implements PlayerInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-      $fields['given_name'] = BaseFieldDefinition::create('string')
+    $fields['given_name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Given name'))
       ->setDescription(t('The given name of the Player.'))
       ->setSettings(array(
@@ -234,29 +234,77 @@ class Player extends ContentEntityBase implements PlayerInterface {
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    /* Debe jalar las opciones de un configuration entity */
-    $fields['position'] = BaseFieldDefinition::create('list_string')
-      ->setLabel(t('Player position'))
-      ->setDescription(t('The position of the Player.'))
-      ->setSettings(array(
-        'allowed_values' => array(
-          'goalkeeper' => 'Goal Keeper',
-          'fieldplayer' => 'Field Player',
-        ),
-      ))
+    $fields['team'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Team'))
+      ->setDescription(t('The team ID of Player actual team.'))
+      ->setRevisionable(TRUE)
+      ->setSetting('target_type', 'team')
+      ->setSetting('handler', 'default')
+      ->setTranslatable(FALSE)
       ->setDisplayOptions('view', array(
-        'label' => 'above',
+        'label' => 'hidden',
         'type' => 'string',
-        'weight' => -4,
+        'weight' => 0,
       ))
       ->setDisplayOptions('form', array(
-        'type' => 'options_select',
-        'weight' => -4,
+        'type' => 'entity_reference_autocomplete',
+        'weight' => 5,
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'size' => '60',
+          'autocomplete_type' => 'tags',
+          'placeholder' => '',
+        ),
       ))
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['status'] = BaseFieldDefinition::create('boolean')
+    /* Debe jalar las opciones de un configuration entity */
+    $fields['position'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Position'))
+      ->setDescription(t('The position ID of Player Position entity.'))
+      ->setRevisionable(TRUE)
+      ->setSetting('target_type', 'position')
+      ->setSetting('handler', 'default')
+      ->setTranslatable(FALSE)
+      ->setDisplayOptions('view', array(
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => 0,
+      ))
+      ->setDisplayOptions('form', array(
+        'type' => 'entity_reference_autocomplete',
+        'weight' => 5,
+        'settings' => array(
+          'match_operator' => 'CONTAINS',
+          'size' => '60',
+          'autocomplete_type' => 'tags',
+          'placeholder' => '',
+        ),
+      ))
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['birth_date'] = BaseFieldDefinition::create('datetime')
+      ->setLabel(t('Birth Date'))
+      ->setDescription(t('The player birth date.'))
+      ->setRequired(true)
+      ->setRevisionable(true)
+      ->setDefaultValueCallback('time')
+      ->setDisplayOptions('view', array(
+        'label' => 'above',
+        'type' => 'string',
+        'weight' => 9,
+      ))
+      ->setDisplayOptions('form', array(
+        'type' => 'datetime_default',
+        'default_date_type' => 'now',
+        'weight' => 15,
+      ))
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+	$fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))
       ->setDescription(t('A boolean indicating whether the Player is published.'))
       ->setDefaultValue(TRUE);

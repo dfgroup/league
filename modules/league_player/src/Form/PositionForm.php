@@ -28,6 +28,14 @@ class PositionForm extends EntityForm {
       '#required' => TRUE,
     );
 
+    $form['weight'] = array(
+      '#type' => 'weight',
+      '#title' => $this->t('Weight'),
+      '#default_value' => $position->weight(),
+      '#description' => $this->t("Weight for position purposes."),
+      '#delta' => 10,
+    );
+
     $form['id'] = array(
       '#type' => 'machine_name',
       '#default_value' => $position->id(),
@@ -36,8 +44,6 @@ class PositionForm extends EntityForm {
       ),
       '#disabled' => !$position->isNew(),
     );
-
-    /* You will need additional form elements for your custom properties. */
 
     return $form;
   }

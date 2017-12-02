@@ -55,8 +55,10 @@ class LeagueGameResultFormatter extends FormatterBase {
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
 
-    foreach ($items as $delta => $item) {
-      $elements[$delta] = ['#markup' => $this->viewValue($item)];
+    foreach ($items->getValue() as $delta => $item) {
+      $score_a = $item['score_a'];
+      $score_b = $item['score_b'];
+      $elements[$delta] = ['#markup' => sprintf("<span class='score-a'>%s</span><span class='score-b'>%s</span>", $score_a, $score_b)];
     }
 
     return $elements;

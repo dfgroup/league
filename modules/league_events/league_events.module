@@ -16,7 +16,7 @@ function league_events_help($route_name, RouteMatchInterface $route_match) {
     case 'help.page.league_events':
       $output = '';
       $output .= '<h3>' . t('About') . '</h3>';
-      $output .= '<p>' . t('Generates information for player events during games. Ex: Red or Yellow Cards') . '</p>';
+      $output .= '<p>' . t('Events for games on League tournament') . '</p>';
       return $output;
 
     default:

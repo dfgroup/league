@@ -1,27 +1,22 @@
-# League events routing definition
-league_events.settings_tab:
-  route_name: league_events.settings
+# Game events routing definition
+game_events.settings_tab:
+  route_name: game_events.settings
   title: 'Settings'
-  base_route: league_events.settings
+  base_route: game_events.settings
 
-entity.league_events.canonical:
-  route_name: entity.league_events.canonical
-  base_route: entity.league_events.canonical
+entity.game_events.canonical:
+  route_name: entity.game_events.canonical
+  base_route: entity.game_events.canonical
   title: 'View'
 
-entity.league_events.edit_form:
-  route_name: entity.league_events.edit_form
-  base_route: entity.league_events.canonical
+entity.game_events.edit_form:
+  route_name: entity.game_events.edit_form
+  base_route: entity.game_events.canonical
   title: 'Edit'
 
-entity.league_events.version_history:
-  route_name: entity.league_events.version_history
-  base_route: entity.league_events.canonical
-  title: 'Revisions'
-
-entity.league_events.delete_form:
-  route_name:  entity.league_events.delete_form
-  base_route:  entity.league_events.canonical
+entity.game_events.delete_form:
+  route_name:  entity.game_events.delete_form
+  base_route:  entity.game_events.canonical
   title: Delete
   weight: 10
 

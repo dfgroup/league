@@ -10,3 +10,7 @@ league_player.position.*:
       label: 'Label'
     uuid:
       type: string
+    weight:
+      type: integer
+      label: 'Weight'
+      default: 0

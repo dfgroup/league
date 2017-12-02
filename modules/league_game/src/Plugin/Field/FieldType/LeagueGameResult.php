@@ -28,9 +28,7 @@ class LeagueGameResult extends FieldItemBase {
    */
   public static function defaultStorageSettings() {
     return [
-      'max_length' => 255,
-      'is_ascii' => FALSE,
-      'case_sensitive' => FALSE,
+      'main_score' => TRUE,
     ] + parent::defaultStorageSettings();
   }
 
@@ -39,10 +37,12 @@ class LeagueGameResult extends FieldItemBase {
    */
   public static function propertyDefinitions(FieldStorageDefinitionInterface $field_definition) {
     // Prevent early t() calls by using the TranslatableMarkup.
-    $properties['value'] = DataDefinition::create('string')
-      ->setLabel(new TranslatableMarkup('Text value'))
-      ->setSetting('case_sensitive', $field_definition->getSetting('case_sensitive'))
-      ->setRequired(TRUE);
+    $properties['score_a'] = DataDefinition::create('integer')
+      ->setLabel(t('Score A'))
+      ->setDescription("Stores the day of the week's numeric representation (0-6)");
+    $properties['score_b'] = DataDefinition::create('integer')
+      ->setLabel(t('Score B'))
+      ->setDescription("Stores the start hours value");
 
     return $properties;
   }
@@ -53,10 +53,15 @@ class LeagueGameResult extends FieldItemBase {
   public static function schema(FieldStorageDefinitionInterface $field_definition) {
     $schema = [
       'columns' => [
-        'value' => [
-          'type' => $field_definition->getSetting('is_ascii') === TRUE ? 'varchar_ascii' : 'varchar',
-          'length' => (int) $field_definition->getSetting('max_length'),
-          'binary' => $field_definition->getSetting('case_sensitive'),
+        'score_a' => [
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'default' => 0,
+        ],
+        'score_b' => [
+          'type' => 'int',
+          'unsigned' => TRUE,
+          'default' => 0,
         ],
       ],
     ];
@@ -67,33 +72,9 @@ class LeagueGameResult extends FieldItemBase {
   /**
    * {@inheritdoc}
    */
-  public function getConstraints() {
-    $constraints = parent::getConstraints();
-
-    if ($max_length = $this->getSetting('max_length')) {
-      $constraint_manager = \Drupal::typedDataManager()->getValidationConstraintManager();
-      $constraints[] = $constraint_manager->create('ComplexData', [
-        'value' => [
-          'Length' => [
-            'max' => $max_length,
-            'maxMessage' => t('%name: may not be longer than @max characters.', [
-              '%name' => $this->getFieldDefinition()->getLabel(),
-              '@max' => $max_length
-            ]),
-          ],
-        ],
-      ]);
-    }
-
-    return $constraints;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public static function generateSampleValue(FieldDefinitionInterface $field_definition) {
-    $random = new Random();
-    $values['value'] = $random->word(mt_rand(1, $field_definition->getSetting('max_length')));
+    $values['score_a'] = rand(0, 3);
+    $values['score_b'] = rand(0, 3);
     return $values;
   }
 
@@ -103,14 +84,13 @@ class LeagueGameResult extends FieldItemBase {
   public function storageSettingsForm(array &$form, FormStateInterface $form_state, $has_data) {
     $elements = [];
 
-    $elements['max_length'] = [
-      '#type' => 'number',
-      '#title' => t('Maximum length'),
-      '#default_value' => $this->getSetting('max_length'),
+    $elements['main_score'] = [
+      '#type' => 'radios',
+      '#title' => t('Main Score'),
+      '#default_value' => $this->getSetting('main_score'),
       '#required' => TRUE,
-      '#description' => t('The maximum length of the field in characters.'),
-      '#min' => 1,
-      '#disabled' => $has_data,
+      '#description' => t('Define if this score is main or partial.'),
+      '#options' => array(0 => $this->t('Partial score'), 1 => $this->t('Main score')),
     ];
 
     return $elements;
@@ -120,8 +100,13 @@ class LeagueGameResult extends FieldItemBase {
    * {@inheritdoc}
    */
   public function isEmpty() {
-    $value = $this->get('value')->getValue();
-    return $value === NULL || $value === '';
+    if (
+      $this->get('score_a')->getValue() == '' ||
+      $this->get('score_b')->getValue() == ''
+    ) {
+      return TRUE;
+    }
+    return FALSE;
   }
 
 }

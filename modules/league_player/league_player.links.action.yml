@@ -8,4 +8,3 @@ entity.position.add_form:
   title: 'Add Position'
   appears_on:
     - entity.position.collection
-
